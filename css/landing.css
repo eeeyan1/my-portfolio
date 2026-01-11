@@ -1,0 +1,403 @@
+:root {
+  --bg: #343434;
+  --text: #f3f3f3;
+  --muted: #b3b3b3;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --accent: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  background: #000;
+  color: #fff;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0));
+}
+
+.glass-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.brand .name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.brand .subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Brand layout with circular avatar */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 0;
+  justify-self: center;
+}
+
+.nav-btn {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.06s ease;
+}
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+.nav-btn:active {
+  transform: translateY(1px);
+}
+
+main {
+  padding: 24px 16px 64px;
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.container1 {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 8px;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 16px 0;
+  font-size: 28px;
+}
+
+/* Center only the About section heading */
+#about h2,
+#stack h2,
+#experience h2,
+#projects h2,
+#contact h2 {
+  text-align: center;
+}
+
+/* Center the About section lead paragraph */
+#about .lead {
+  text-align: justify;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#about .about-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+.resume-btn {
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--text);
+}
+.resume-btn:hover { background: rgba(255,255,255,0.18); }
+
+/* ==== Resume modal ==== */
+#resume-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+#resume-modal[aria-hidden="false"] { display: flex; }
+.resume-modal-dialog {
+  width: min(1024px, 92vw);
+  height: min(720px, 86vh);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.resume-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.4);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 16px;
+}
+#resume-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #111;
+}
+
+/* Center Experience content without container */
+#experience > .card {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+#experience .lead {
+  text-align: center;
+}
+
+/* Center Contact section content */
+#contact .contact-grid {
+  display: grid;
+  place-items: center;
+}
+#contact .contact-card {
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+#contact .contact-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+#contact #contact-email { color: var(--text); text-decoration: none; }
+#contact .contact-socials {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+/* Style social buttons with icon + name */
+#contact .social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text);
+}
+#contact .social-btn:hover { background: rgba(255,255,255,0.08); }
+#contact .social-btn i { font-size: 20px; }
+
+.lead {
+  font-size: 16px;
+  color: #e6e6e6;
+}
+
+.tech-list {
+  list-style: none;
+  margin: 24px 0 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.tech-item i {
+  font-size: 22px;
+  color: #fff;
+  filter: grayscale(100%) contrast(0) brightness(2);
+}
+.tech-item span {
+  font-size: 15px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.footer {
+  padding: 24px 16px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  color: var(--muted);
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .brand .name { font-size: 16px; }
+  .nav-links { gap: 6px; }
+  .nav-btn { padding: 6px 10px; font-size: 13px; }
+  .brand-avatar { width: 32px; height: 32px; }
+}
+
+
+/* Section heading pop highlight when arriving via nav */
+@keyframes section-pop-highlight {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+.section-pop {
+  animation: section-pop-highlight 0.45s ease-out;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+/* ==== Stack two-row carousel ==== */
+.tech-carousel {
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel-viewport {
+  position: relative;
+  height: 86px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 12px;
+  /* fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
+}
+.carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  width: max-content;
+  will-change: transform;
+}
+.carousel-track .tech-item {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+.carousel-track .tech-item i { font-size: 28px; }
+
+/* Animations - seamless marquee */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.carousel-viewport.top .carousel-track.top { animation: marquee-scroll 10s linear infinite reverse; }
+.carousel-viewport.bottom .carousel-track.bottom { animation: marquee-scroll 10s linear infinite; }
+
+/* Scope to the stack area and prevent overlap */
+#stack .tech-carousel { contain: layout paint; }
+
+/* Mobile adjustments */
+@media (max-width: 720px) {
+  .tech-carousel { max-width: 100%; }
+  .carousel-viewport { height: 74px; }
+  .carousel-track .tech-item i { font-size: 24px; }
+  .carousel-track .tech-item span { font-size: 14px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-viewport.top .carousel-track.top,
+  .carousel-viewport.bottom .carousel-track.bottom { animation: none; }
+}
